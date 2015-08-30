@@ -3,7 +3,7 @@
 # See UNLICENSE file for license information
 
 # Misc checks
-if ! test $(whoami) = "root"
+if [ $(id -u) -ne 0 ]
 then
 	echo "This script needs root to work." # It really does. We're installing packages.
 	exit 1
@@ -64,6 +64,11 @@ for d in */ ; do
 	cp -rT $d / 2> /dev/null
 	cp -R $d / 2> /dev/null
 done
+echo "Package extracted. Now running post-install script"
+tar xf control.tar*
+chmod +x postinst
+bash -x postinst &> postinst.log && echo "Post-install completed succesfully." || echo "Post-install script returned error. The package may or may not work. See postinst.log" 
+echo "Cleaning up.."
 cd ..
 rm -rf $t
 echo "Done! A list of copied files has been created in $n.list for eventual deletion." 
