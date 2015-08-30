@@ -56,15 +56,7 @@ cp $1 $t
 cd $t
 ar x $n
 rm $n
-
-if [ -f data.tar.gz ]
-	then
-        tar xzf data.tar.gz 2>/dev/null
-fi
-if [ -f data.tar.xz ]
-	then
-	tar xJf data.tar.xz 2>/dev/null
-fi
+tar xf data.tar* 2>/dev/null
 
 touch $n.list
 for d in */ ; do
