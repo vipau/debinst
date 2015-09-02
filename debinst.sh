@@ -66,8 +66,15 @@ for d in */ ; do
 done
 echo "Package extracted. Now running post-install script"
 tar xf control.tar*
-chmod +x postinst
-bash -x postinst &> postinst.log && echo "Post-install completed succesfully." || echo "Post-install script returned error. The package may or may not work. See postinst.log" 
+if [ -f postinst ]
+	then
+	bash postinst configure > ../postinst.log 2>&1 && echo "Post-install completed succesfully." || echo "Post-install script returned error. The package may or may not work. See postinst.log"
+fi  
+if [[ $(file ../postinst.log) =~ "empty" ]]; then rm -f ../postinst.log; fi
+if [ ! -f postinst ]
+	then
+	echo "This package does not have a post-install script."
+fi
 echo "Cleaning up.."
 cd ..
 rm -rf $t
