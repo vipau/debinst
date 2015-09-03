@@ -21,7 +21,6 @@ exit 1
 fi
 }
 
-depcheck bash
 depcheck ar binutils
 depcheck tar
 depcheck basename coreutils
@@ -62,7 +61,6 @@ touch $n.list
 for d in */ ; do
 	find $d -mindepth 2 >> ../$n.list
 	cp -rT $d / 2> /dev/null
-	cp -R $d / 2> /dev/null
 done
 echo "Package extracted. Now running post-install script"
 tar xf control.tar*
