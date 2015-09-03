@@ -40,7 +40,7 @@ if [ $# -eq 0 ]
 		exit 1
 	# I may change this =~ to a `grep -Eq` for older bash and plain sh users in the future
 	# First check .deb extension, then file magic
-	elif [[ ! $1 =~ \.deb$ ]] || ! [[ $(file -b $1) =~ Debian* ]] 
+	elif [[ ! $1 =~ \.deb$ ]] # || ! [[ $(file -b $1) =~ *Debian* ]] 
 	then
 		echo "The specified file does not look like a valid .deb archive"
 		exit 1
