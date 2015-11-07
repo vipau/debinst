@@ -60,7 +60,7 @@ tar xf data.tar* 2>/dev/null
 touch $n.list
 for d in */ ; do
 	find $d -mindepth 2 >> ../$n.list
-	cp -rT $d / 2> /dev/null
+	cp -r $d / 2> /dev/null
 done
 echo "Package extracted. Now running post-install script"
 tar xf control.tar*
