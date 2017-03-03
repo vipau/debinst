@@ -84,7 +84,7 @@ _pkg_install(){
 
 _pkg_remove(){
 	_package=$1
-	if ls $_list_dir/$1*.list 2>&1 > /dev/null; then
+	if ls $_list_dir/$1*.list 2> /dev/null > /dev/null; then
 		find $_list_dir -type f -name "$1*.list" > /tmp/debinst.remove
 		basename $(cat /tmp/debinst.remove) | sed 's/\..*//'
 		echo -n "Really remove package(s) [y/n]?: "
@@ -122,7 +122,7 @@ fi
 case "$1" in
 	"install") _pkg_install $2;;
 	"remove") _pkg_remove $2;;
-	"list") if ls $_list_dir/*.list 2>&1 > /dev/null; then
+	"list") if ls $_list_dir/*.list 2> /dev/null > /dev/null; then
 	 	find $_list_dir -type f | xargs basename | sed 's/\..*//'
 	 else
 	 	echo "No installed .deb packages."
