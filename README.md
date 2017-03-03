@@ -4,8 +4,10 @@ Debinst does not handle dependencies, but it executes post-install script if it 
 The code is kind of dirty.  
 
 ## Usage
-[debinst.sh](debinst.sh) takes one argument only, the filename (ending in .deb)  
-`./debinst /path/to/package.deb`
+debinst [install|remove|list] {PACKAGE.deb}
+Install will attempt to install the .deb package, remove will take a fuzzy search argument for all installed packages and attempt to remove them and their files based on their .list file. .list files are now stored in /var/debinst/lists.
+
+List will output all installed .deb packages based on the .list files within the lists directory.
 
 ## Log files / uninstalling packages
 This script leaves 1 to 2 files around.  
@@ -17,7 +19,6 @@ To uninstall a package, remove all the files contained in the .list file. If you
 ## Todo
 * Add a -f switch for overriding (or not) files
 * Check if the .deb is a good package before installing.
-* Add an uninstaller.
 
 ## License
 See [UNLICENSE](UNLICENSE)
