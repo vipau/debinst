@@ -21,7 +21,7 @@ fi
 }
 
 depcheck ar binutils
-depcheck tar
+depcheck tar xz
 depcheck basename coreutils
 
 _list_dir="/var/debinst/lists"
