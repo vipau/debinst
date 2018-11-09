@@ -11,8 +11,8 @@ fi
 depcheck () {
 		if ! command -v "$1" >/dev/null 2>&1
 		then
-			echo "I require "$1" but it's not installed."
-			echo "Install the "$2" package."
+			echo "I require '$1' but it's not installed."
+			echo "Install the '$2' package."
             exit 1 
 fi
 }
