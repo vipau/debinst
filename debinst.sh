@@ -11,17 +11,15 @@ fi
 depcheck () {
 		if ! command -v "$1" >/dev/null 2>&1
 		then
-			echo "I require \`"$1"\` but it's not installed."
-			echo "Install the \`"${@: -1}"\` package."
-			# ${@: -1} is bashism for "last argument passed"
-			# This is done instead of $2 to avoid writing "depcheck tar tar"
-		        # I suck at being evil, I know.	
-exit 1 
+			echo "I require "$1" but it's not installed."
+			echo "Install the "$2" package."
+            exit 1 
 fi
 }
 
 depcheck ar binutils
-depcheck tar xz
+depcheck tar tar
+depcheck xz xz
 depcheck basename coreutils
 
 _list_dir="/var/debinst/lists"
